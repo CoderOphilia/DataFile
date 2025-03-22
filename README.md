@@ -19,13 +19,25 @@ when we set the inplace = True; we are allowing the modification to be done on t
 We can replace the missing value by using the datframe.replace(missing_value, new_value)
 1. For replacing, first we have to normalize the data. mean = df["normalized-loses"].mean()
 2. df["normalized-loses"].replace(np.nan.mean)
+.replace(A, B, inplace = True) 
+to replace A by B.
+
 
 # Data Formatting
 - Data is usually colected from different places and stored in different formats
 - Bringing data into a common standard of expression allows users to make meaningful comparison
 
+# Correcting Data types
+- use dataframe.dtypes() to identify data type
+- To convert data types: use dataframe.astype() to convert data type
+- Example convert data type to integer in column "price"
+- df["price"] = df["price"].astype("int")
+
 # Data Normalization
 Normalization enables a fairer comparison between the different features. It make sure that the features have the same impact and it is also important for computtational reasons.
+
+- It helps to make sure that the range of the data is consistent
+  
 ## Methods of normalizating data
 1. Simple feature scaling: This method makes the value range betwwen 0 and 1
 2. Min-Max method
@@ -44,6 +56,13 @@ Normalization enables a fairer comparison between the different features. It mak
 In this example; 4 means, 4 equal interval
 <img width="356" alt="image" src="https://github.com/user-attachments/assets/e87d6c0d-5b33-4976-8940-0c5679c49266" />
 
+- We have to use the python function called as linspace to allocate the bins
+- we have to mention the range and how many bins we need
+- bins = np.linspace(min(df['price"]), max(df["price"]),4)
+- group_names = ["Low", "Medium", "High"] --> This is the bin names
+- df["priced-binned"] = pd.cut(df["price"], bin, labels = group_names, include_lowest = True)
+- After that visualize the data using histograms
+  
 # Categorical variables
 - Most statistical models cannot take in the objects/strings as input
 - We convert categorical data into numeric data.
