@@ -104,3 +104,62 @@ Utilize histograms to visualize the distribution of binned data and gain insight
 Statistical models generally require numerical inputs, making it necessary to convert categorical variables like "fuel type" into numerical formats.
 
 You can implement the one-hot encoding technique in Python using pandas’ get_dummies method to transform categorical variables into a format suitable for machine learning models.
+
+
+## 🔧 What is `ColumnTransformer`?
+
+`ColumnTransformer` lets you apply **different preprocessing steps to different columns** at the same time — like scaling numerical features and encoding categorical ones — all in one go.
+
+---
+
+### 👇 Code Breakdown:
+```python
+preprocessor = ColumnTransformer(transformers=[
+    ('num', StandardScaler(), numerical_cols),
+    ('cat', OneHotEncoder(drop='first', handle_unknown='ignore'), categorical_cols)
+])
+```
+
+This means:
+
+### 1. `'num'`: For **numerical columns**
+```python
+StandardScaler()  # Standardizes the data (mean=0, std=1)
+```
+- Makes features like `age`, `bmi`, and `glucose` scale equally.
+- Important for models like Logistic Regression and SVM.
+
+### 2. `'cat'`: For **categorical columns**
+```python
+OneHotEncoder(drop='first', handle_unknown='ignore')
+```
+- Converts categories like `Male/Female`, `Urban/Rural` into binary 0/1 columns.
+- `drop='first'` avoids dummy variable trap (drops the first category).
+- `handle_unknown='ignore'` avoids errors if test data has unseen categories.
+
+---
+
+### ✅ What Does It Do Overall?
+
+After running:
+```python
+X_transformed = preprocessor.fit_transform(X_model)
+```
+
+You get:
+- All categorical variables turned into 0/1 columns
+- All numerical variables scaled properly
+- A **numerical-only, model-ready dataset**
+
+---
+
+### 🧠 Why It’s Useful:
+
+| Without ColumnTransformer | With ColumnTransformer       |
+|---------------------------|------------------------------|
+| Manual encoding/scaling   | Everything handled together ✅ |
+| Hard to scale/track       | Easy to manage and reuse     |
+| Risk of errors             | Clean and consistent         |
+
+---
+
