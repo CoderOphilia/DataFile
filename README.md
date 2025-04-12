@@ -163,3 +163,11 @@ You get:
 
 ---
 
+# MOdule 3 
+Is there a relationship between categorical variables and the stroke ( which is the target)
+
+PANDAS
+
+-- We can use Panda dataframe.groupby() method to the categorical variables
+-- groups data into subsets according to the different categories of that variable
+-- We can group by a single variable or multiple variable, for multiple variables we have to pass multiple variable names
