@@ -168,6 +168,49 @@ Is there a relationship between categorical variables and the stroke ( which is 
 
 PANDAS
 
+-- we can use df['colum-name']..value_counts() --> It is used to show the count of different categorical data of that column --> It summarizes the categorical data
+<img width="287" alt="image" src="https://github.com/user-attachments/assets/14067a30-8553-4d4f-b867-aa7b8060da46" />
+
+
+BOX PLOTS
+
+ Box plots are a great way to visualize numeric data, since you can visualize the various distributions of the data. The main features that the box plot shows are the median of the data which represents where the middle data point is, the upper quartile shows where the 75th percentile is, the lower quartile shows where the 25th percentile is. The data between the upper and lower quartile represents the inter-quartile range. Next, you have the lower and upper extremes. These are calculated as 1.5 times the inter-quartile range above the 75th percentile, and as 1.5 times the IQR below the 25th percentile. Finally, box plots also display outliers as individual dots that occur outside the upper and lower extremes. With box plots, you can easily spot outliers and also see the distribution and skewness of the data. Box plots make it easy to compare between groups. 
+ <img width="365" alt="image" src="https://github.com/user-attachments/assets/57c57bb6-da37-4cc7-a563-a0cbb43341b2" />
+
+ 1. Symmetry:
+If the box plot is symmetrical, the median will be roughly in the center of the box, and both whiskers will be about the same length. This indicates no skewness (i.e., a normal distribution).
+
+2. Right (Positively) Skewed:
+If the right whisker (the one extending to the larger values) is much longer than the left whisker, and the median is closer to the bottom (or left) of the box, the data is positively skewed (skewed to the right).
+
+This means there are a few high values (outliers) pulling the distribution to the right.
+
+3. Left (Negatively) Skewed:
+If the left whisker (the one extending to the smaller values) is much longer than the right whisker, and the median is closer to the top (or right) of the box, the data is negatively skewed (skewed to the left).
+
+This indicates that there are a few low values (outliers) pulling the distribution to the left.
+
+4. Outliers:
+Outliers (points beyond the whiskers) may further indicate skewness, particularly if they're concentrated in one direction (either high or low values).
+
+Summary:
+Symmetrical box plot: No skewness (normal distribution).
+
+Right skew: Longer right whisker, median closer to the left.
+
+Left skew: Longer left whisker, median closer to the right.
+
+#BOX PLOTS
+# Create box plots for numerical columns
+sns.boxplot(data=df, x='stroke', y='age')
+plt.title('Box plot of Age vs Stroke')      
+plt.xlabel('Stroke')
+plt.ylabel('Age')   
+plt.show()
+
+The output:
+<img width="448" alt="image" src="https://github.com/user-attachments/assets/f964f72f-6fc7-483d-9041-1c075ca28395" />
+
 -- We can use Panda dataframe.groupby() method to the categorical variables
 -- groups data into subsets according to the different categories of that variable
 -- We can group by a single variable or multiple variable, for multiple variables we have to pass multiple variable names
